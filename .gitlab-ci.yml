@@ -8,6 +8,5 @@ alpine-vts:
   script:
     - docker login -u "gitlab-ci-token" -p "${CI_JOB_TOKEN}" "${CI_REGISTRY}"
     - cd mainline/alpine/
-    - docker build -t nginx-vts:1.13.8 .
-    - docker push 
-    - docker push "$CI_REGISTRY_IMAGE:1.13.8"
+    - docker build -t "${CI_REGISTRY}"/nginx-vts:1.13.8 .
+    - docker push "${CI_REGISTRY}/nginx-vts:1.13.8"
