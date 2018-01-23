@@ -1,0 +1,12 @@
+---
+alpine-vts:
+  stage: build
+  tags:
+    - bash
+  only:
+    - vts
+  script:
+    - docker login -u "gitlab-ci-token" -p "${CI_JOB_TOKEN}" "${CI_REGISTRY}"
+    - docker build -t nginx-vts -f mainline/alpine/Dockerfile .
+    - docker push 
+    - docker push "$CI_REGISTRY_IMAGE:1.13.8"
